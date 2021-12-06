@@ -1,0 +1,13 @@
+{
+  "name": "tezos-randomizer-api",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
