@@ -1,0 +1,6 @@
+export const CONTRACT_ADDRESS = process.env['CONTRACT_ADDRESS']
+export const INTERVAL = process.env['INTERVAL']
+export const WALLET = process.env['WALLET']
+export const RPC = process.env['RPC']
+export const MIN = process.env['MIN']
+export const MAX = process.env['MAX']

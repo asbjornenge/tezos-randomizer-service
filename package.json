@@ -1,13 +1,17 @@
 {
-  "name": "tezos-randomizer-api",
+  "name": "tezos-randomizer-service",
   "version": "1.0.0",
   "type": "module",
   "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@taquito/signer": "^11.0.2",
+    "@taquito/taquito": "^11.0.2"
+  }
 }
