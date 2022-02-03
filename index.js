@@ -1,15 +1,18 @@
 import fs from 'fs'
+import Sentry from '@sentry/node'
 import { importKey } from '@taquito/signer'
 import { TezosToolkit } from '@taquito/taquito'
 import {
-  CONTRACT_ADDRESS,
-  INTERVAL_MIN,
-  INTERVAL_MAX,
-  WALLET,
   RPC,
   MIN,
-  MAX
+  MAX,
+  WALLET,
+  SENTRY_DSN, 
+  INTERVAL_MIN,
+  INTERVAL_MAX,
+  CONTRACT_ADDRESS
 } from './config.js'
+import './sentry.js'
 
 const toolkit = new TezosToolkit(RPC)
 const wallet = JSON.parse(fs.readFileSync(`./secrets/${WALLET}.json`).toString())
@@ -38,6 +41,7 @@ const setEntropyLoop = async () => {
     const hash = await setEntropy()
     console.log(`SUCCESS`, hash)
   } catch(e) {
+    if (SENTRY_DSN) Sentry.captureException(e)
     console.log(`FAIL`, e.message)
   }
   const interval = genRandomNumber(parseInt(INTERVAL_MIN), parseInt(INTERVAL_MAX))
