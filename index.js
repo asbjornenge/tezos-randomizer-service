@@ -3,7 +3,8 @@ import { importKey } from '@taquito/signer'
 import { TezosToolkit } from '@taquito/taquito'
 import {
   CONTRACT_ADDRESS,
-  INTERVAL,
+  INTERVAL_MIN,
+  INTERVAL_MAX,
   WALLET,
   RPC,
   MIN,
@@ -16,17 +17,15 @@ importKey(toolkit,
   wallet.privkey
 ).catch((e) => console.error(e));
 
-function genRandomNumber() {  
-  return Math.floor(
-    Math.random() * (MAX - MIN + 1) + MIN
-  )
+function genRandomNumber(min, max) { 
+  return Math.floor(Math.random() * (max - min + 1) + min) 
 }
 
 export async function setEntropy() {
   let contract = await toolkit.contract.at(CONTRACT_ADDRESS)
   //let methods = contract.parameterSchema.ExtractSignatures()
-  let rn = genRandomNumber()
-  console.log(rn)
+  let rn = genRandomNumber(parseInt(MIN), parseInt(MAX))
+  console.log('random', rn)
   let op = await contract.methods.setEntropy(rn).send()
   await op.confirmation(1)
   return op.hash 
@@ -41,7 +40,9 @@ const setEntropyLoop = async () => {
   } catch(e) {
     console.log(`FAIL`, e.message)
   }
-  setTimeout(setEntropyLoop, INTERVAL*1000)
+  const interval = genRandomNumber(parseInt(INTERVAL_MIN), parseInt(INTERVAL_MAX))
+  console.log(`interval`, interval)
+  setTimeout(setEntropyLoop, interval*1000)
 }
 
 (async () => {
