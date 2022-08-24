@@ -11,8 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sentry/node": "^6.17.4",
-    "@taquito/signer": "^11.0.2",
-    "@taquito/taquito": "^11.0.2"
+    "@sentry/node": "^5.5.0",
+    "@taquito/signer": "^13.0.1",
+    "@taquito/taquito": "^13.0.1"
   }
 }

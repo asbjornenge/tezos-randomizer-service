@@ -41,7 +41,7 @@ const setEntropyLoop = async () => {
     const hash = await setEntropy()
     console.log(`SUCCESS`, hash)
   } catch(e) {
-    if (SENTRY_DSN) Sentry.captureException(e)
+    Sentry.captureException(e)
     console.log(`FAIL`, e.message)
   }
   const interval = genRandomNumber(parseInt(INTERVAL_MIN), parseInt(INTERVAL_MAX))
